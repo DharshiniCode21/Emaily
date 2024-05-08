@@ -1,0 +1,19 @@
+{
+  "name": "feedback-form",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "19.3.0",
+    "npm": "7.24.2"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
