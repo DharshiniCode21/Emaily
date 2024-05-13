@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import { googleClientID, googleClientSecret } from "../config/key.js";
+import config from "../config/key.js";
 import { userModel } from "../models/User.js";
 
 passport.serializeUser((user, done) => {
@@ -14,9 +14,10 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: googleClientID,
-      clientSecret: googleClientSecret,
+      clientID: config.googleClientID,
+      clientSecret: config.googleClientSecret,
       callbackURL: "/auth/google/callback",
+      proxy: true,
     },
     (accessToken, refreshToken, profile, done) => {
       userModel
