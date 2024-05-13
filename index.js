@@ -8,12 +8,14 @@ import cookieSession from "cookie-session";
 import passport from "passport";
 
 const app = express();
-mongoose.connect(mongoURL).then(() => console.log("Connected with Mongo Db"));
+mongoose
+  .connect(process.env.mongoURL || mongoURL)
+  .then(() => console.log("Connected with Mongo Db"));
 
 app.use(
   cookieSession({
     maxAge: 60 * 60 * 1000,
-    keys: [cookieKey],
+    keys: [process.env.cookieKey || cookieKey],
   })
 );
 app.use(passport.initialize());
