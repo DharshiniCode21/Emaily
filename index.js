@@ -2,20 +2,20 @@ import express from "express";
 import "./services/passport.js";
 import { routes } from "./routes/authRoutes.js";
 import mongoose from "mongoose";
-import { cookieKey, mongoURL } from "./config/key.js";
+import config from "./config/key.js";
 import "./models/User.js";
 import cookieSession from "cookie-session";
 import passport from "passport";
 
 const app = express();
 mongoose
-  .connect(process.env.mongoURL || mongoURL)
+  .connect(config.mongoURL)
   .then(() => console.log("Connected with Mongo Db"));
 
 app.use(
   cookieSession({
     maxAge: 60 * 60 * 1000,
-    keys: [process.env.cookieKey || cookieKey],
+    keys: [config.cookieKey],
   })
 );
 app.use(passport.initialize());
